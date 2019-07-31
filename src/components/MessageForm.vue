@@ -30,6 +30,7 @@
 
 <script>
     import { mapState, mapGetters } from 'vuex';
+    import { HAS_ERROR } from '../constants/functionNames';
 
     export default {
       name: 'MessageForm',
@@ -40,7 +41,7 @@
       },
       computed: {
         ...mapState(['user', 'sending', 'error', 'activeRoom']),
-        ...mapGetters(['hasError'])
+        ...mapGetters([HAS_ERROR])
       }
     }
 </script>

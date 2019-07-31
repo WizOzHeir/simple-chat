@@ -4,6 +4,7 @@ import VuexPersistence from 'vuex-persist';
 
 import mutations from './mutations';
 import actions from './actions';
+import { HAS_ERROR } from '../constants/functionNames';
 
 Vue.use(Vuex);
 
@@ -29,7 +30,7 @@ export default new Vuex.Store({
   actions,
   mutations,
   getters: {
-    hasError: state => state.error ? true : false
+    [HAS_ERROR]: state => state.error ? true : false
   },
   plugins: [vuexLocal.plugin],
   strict: debug

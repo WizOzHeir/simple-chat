@@ -8,8 +8,11 @@
                     :key="user.username"
             >
                 {{ user.name }}
-                <b-badge v-if="user.presence" :variant="statusColor(user.presence)" pill></b-badge>
-                {{ user.presence }}
+                <b-badge v-if="user.presence"
+                         :variant="statusColor(user.presence)"
+                         pill>
+                    {{ user.presence }}
+                </b-badge>
             </b-list-group-item>
         </b-list-group>
     </div>
@@ -21,11 +24,11 @@
     export default {
       name: 'UserList',
       computed: {
-        ...mapState(['users', 'loading'])
+        ...mapState(['loading', 'users'])
       },
       methods: {
         statusColor(status) {
-          return status ? 'success' : 'warning'
+          return status === 'online' ? 'success' : 'warning'
         }
       }
     }

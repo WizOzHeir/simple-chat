@@ -1,7 +1,7 @@
 <template>
     <div class="login">
         <b-jumbotron
-                header="Cool chat with Vue.js"
+                header="Cool chat"
                 lead="Using Chatkit & Bootstrap-Vue"
                 bg-variant="info"
                 text-variant="white"

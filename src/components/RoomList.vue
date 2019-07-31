@@ -8,7 +8,7 @@
                     :key="room.name"
                     :active="activeRoom.id === room.id"
                     href="#"
-                    @onclick="onChange(room)"
+                    @click="onChange(room)"
             >
                 # {{ room.name }}
             </b-list-group-item>
@@ -17,12 +17,20 @@
 </template>
 
 <script>
-    import { mapState } from 'vuex';
+    import { mapState, mapActions } from 'vuex';
+
+    import { CHANGE_ROOM } from '../constants/functionNames';
 
     export default {
       name: 'RoomList',
       computed: {
         ...mapState(['rooms', 'activeRoom'])
+      },
+      methods: {
+        ...mapActions([CHANGE_ROOM]),
+        onChange(room) {
+          this[CHANGE_ROOM](room.id);
+        }
       }
     }
 </script>
