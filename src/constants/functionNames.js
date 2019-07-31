@@ -14,4 +14,6 @@ export const RESET = 'reset';
 
 export const HAS_ERROR = 'hasError';
 export const LOGIN = 'login';
+export const LOGOUT = 'logout';
 export const CHANGE_ROOM = 'changeRoom';
+export const SEND_MESSAGE = 'sendMessage';

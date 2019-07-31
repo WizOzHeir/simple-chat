@@ -40,13 +40,29 @@ export default {
       commit(constants.SET_LOADING, false);
     }
   },
-
+  [constants.LOGOUT]: async function ({ commit}) {
+    commit(constants.RESET);
+    chatkit.disconnectUser();
+    window.localStorage.clear();
+  },
   [constants.CHANGE_ROOM]: async function ({ commit }, roomId) {
     try {
       const {id, name} = await chatkit.subscribeToRoom(roomId);
       commit(constants.SET_ACTIVE_ROOM, {id, name});
     } catch (error) {
       handleError(commit, error);
+    }
+  },
+  [constants.SEND_MESSAGE]: async function({ commit }, message) {
+    try {
+      commit(constants.SET_ERROR, '');
+      commit(constants.SET_SENDING, true);
+      const messageId = await chatkit.sendMessage(message);
+      return messageId;
+    } catch (error) {
+      handleError(commit, error);
+    } finally {
+      commit(constants.SET_SENDING, false);
     }
   }
 }

@@ -29,8 +29,10 @@
 </template>
 
 <script>
-    import { mapState, mapGetters } from 'vuex';
-    import { HAS_ERROR } from '../constants/functionNames';
+    import { mapState, mapActions, mapGetters } from 'vuex';
+
+    import { isTypying } from '../chatkit';
+    import { HAS_ERROR, SEND_MESSAGE } from '../constants/functionNames';
 
     export default {
       name: 'MessageForm',
@@ -42,6 +44,18 @@
       computed: {
         ...mapState(['user', 'sending', 'error', 'activeRoom']),
         ...mapGetters([HAS_ERROR])
+      },
+      methods: {
+        ...mapActions([SEND_MESSAGE]),
+        async onSubmit() {
+            const result = await this[SEND_MESSAGE](this.message);
+            if(result) {
+              this.message = '';
+            }
+        },
+        async isTyping() {
+            await isTypying(this.activeRoom.id);
+        }
       }
     }
 </script>
