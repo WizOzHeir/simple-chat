@@ -9,6 +9,7 @@
                         id="message-input"
                         type="text"
                         v-model="message"
+                        @input="isTyping"
                         placeholder="Enter Message"
                         autocomplete="off"
                         required
